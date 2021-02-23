@@ -1,0 +1,35 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<form >
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <div class="div">
+            <h1>Iniciar sesión</h1>
+        </div>
+        
+        
+        <!-- Login Form -->
+        <form [formGroup]="form">
+            <input type="text" id="usermail" class="fadeIn second" name="user" placeholder="Usuario" formControlName="usermail">
+            <div *ngIf="f.usermail.touched && f.usermail.invalid">
+                <div *ngIf="f.usermail.errors.required">Correo requerido</div>
+                <div *ngIf="f.usermail.errors.email">Formato de correo incorrecto</div>
+            </div>
+            <input type="text" id="password" class="fadeIn third" name="password" placeholder="Contraseña" formControlName="password">
+            <div *ngIf="f.password.touched && f.password.invalid">
+                <div *ngIf="f.password.errors.required">Ingresa tu contraseña</div>
+            </div>
+            <input [disabled] ="form.invalid" (click) ="submit()"  type="submit" class="fadeIn fourth" value="Iniciar sesión">
+        </form>
+        
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="#" (click)="crearCuenta()">Crear nueva cuenta</a>
+        </div>
+        
+    </div>
+</div>
+</form>

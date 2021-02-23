@@ -1,0 +1,90 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container">
+
+
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+	<h4 class="card-title mt-3 text-center">Crear Cuenta</h4>
+	<p class="text-center">Llena los campos del formulario para crear una cuenta</p>
+
+	<form [formGroup]="form">
+	<div *ngIf="f.fullName.touched && f.fullName.invalid">
+			<div *ngIf="f.fullName.errors.required">Campo requerido</div>
+			<div *ngIf="f.fullName.errors.pattern">Formato incorrecto</div>
+	</div>
+	<div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+        <input name="fullName" class="form-control" placeholder="Nombre Completo" autocomplete="off" type="text" formControlName = "fullName">
+    </div> <!-- form-group// -->
+	<div *ngIf="f.mail.touched && f.mail.invalid">
+		<div *ngIf="f.mail.errors.required">Campo requerido</div>
+		<div *ngIf="f.mail.errors.email">Formato incorrecto</div>
+	</div>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+		 </div>
+        <input name="mail" class="form-control" placeholder="Correo" type="email" formControlName = "mail">
+    </div> <!-- form-group// -->
+	<div *ngIf="f.phoneNumber.touched && f.phoneNumber.invalid">
+		<div *ngIf="f.phoneNumber.errors.required">Campo requerido</div>
+		<div *ngIf="f.phoneNumber.errors.pattern">Formato incorrecto</div>
+	</div>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+		</div>
+    	<input name="phoneNumber" class="form-control" placeholder="Teléfono" type="text" formControlName="phoneNumber">
+    </div> <!-- form-group// -->
+	<div *ngIf="jobValidation">
+		<div>Selecciona un puesto</div>
+	</div>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+		</div>
+		<select class="form-control" (change)="changeCity($event)">
+			<option *ngFor="let item of data" [ngValue]="item">{{item}}</option>
+		</select>
+	</div> <!-- form-group end.// -->
+	<div *ngIf="f.password.touched && f.password.invalid">
+		<div *ngIf="f.password.errors.required">Campo requerido</div>
+	</div>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input class="form-control" placeholder="Contraseña" type="password" formControlName="password"> 
+    </div> <!-- form-group// -->
+	<div *ngIf="f.passwordConfirmation.touched && f.passwordConfirmation.invalid">
+		<div *ngIf="f.passwordConfirmation.errors.required">Campo requerido</div>
+	</div>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input class="form-control" placeholder="Confirma contraseña" type="password" formControlName="passwordConfirmation"> 
+    </div> <!-- form-group// -->   
+	<div *ngIf="form.hasError('passwordNotEqual')">
+		Las contraseñas no coinciden
+	</div>                                   
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+    </div> <!-- form-group// -->      
+    <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+</form>
+</article>
+</div> <!-- card.// -->
+
+</div> 
+<!--container end.//-->
